@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.freework.weixin_backend.IDao.ContentMapper" >
+  <resultMap id="BaseResultMap" type="com.freework.weixin_backend.domain.Content" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="inner_appid" property="innerAppid" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="head_image" property="headImage" jdbcType="VARCHAR" />
+    <result column="author_name" property="authorName" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="category" property="category" jdbcType="INTEGER" />
+    <result column="play_url" property="playUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, inner_appid, title, head_image, author_name, type, category, play_url, status, 
+    create_date, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.freework.weixin_backend.domain.Content" >
+    insert into content (id, inner_appid, title, 
+      head_image, author_name, type, 
+      category, play_url, status, 
+      create_date, remark)
+    values (#{id,jdbcType=BIGINT}, #{innerAppid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{headImage,jdbcType=VARCHAR}, #{authorName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{category,jdbcType=INTEGER}, #{playUrl,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.freework.weixin_backend.domain.Content" >
+    insert into content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="innerAppid != null" >
+        inner_appid,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="headImage != null" >
+        head_image,
+      </if>
+      <if test="authorName != null" >
+        author_name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="playUrl != null" >
+        play_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="innerAppid != null" >
+        #{innerAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="headImage != null" >
+        #{headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=INTEGER},
+      </if>
+      <if test="playUrl != null" >
+        #{playUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.freework.weixin_backend.domain.Content" >
+    update content
+    <set >
+      <if test="innerAppid != null" >
+        inner_appid = #{innerAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="headImage != null" >
+        head_image = #{headImage,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        author_name = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="category != null" >
+        category = #{category,jdbcType=INTEGER},
+      </if>
+      <if test="playUrl != null" >
+        play_url = #{playUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.freework.weixin_backend.domain.Content" >
+    update content
+    set inner_appid = #{innerAppid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      head_image = #{headImage,jdbcType=VARCHAR},
+      author_name = #{authorName,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      category = #{category,jdbcType=INTEGER},
+      play_url = #{playUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectContent" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    FROM content WHERE (inner_appid = #{appId,jdbcType=VARCHAR} ) ORDER BY create_date DESC LIMIT #{limitNum,jdbcType=INTEGER} OFFSET #{offsetNum,jdbcType=INTEGER};
+  </select>
+</mapper>

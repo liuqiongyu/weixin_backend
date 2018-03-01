@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freework.weixin_backend.IDao.AppInfoMapper">
+  <resultMap id="BaseResultMap" type="com.freework.weixin_backend.domain.AppInfo">
+    <result column="inner_appid" jdbcType="VARCHAR" property="innerAppid" />
+    <result column="wx_appid" jdbcType="VARCHAR" property="wxAppid" />
+    <result column="wx_appsecret" jdbcType="VARCHAR" property="wxAppsecret" />
+    <result column="wx_appname" jdbcType="VARCHAR" property="wxAppname" />
+    <result column="is_enabled" jdbcType="CHAR" property="isEnabled" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.freework.weixin_backend.domain.AppInfo">
+    insert into app_info (inner_appid, wx_appid, wx_appsecret, 
+      wx_appname, is_enabled, remark, 
+      create_date)
+    values (#{innerAppid,jdbcType=VARCHAR}, #{wxAppid,jdbcType=VARCHAR}, #{wxAppsecret,jdbcType=VARCHAR}, 
+      #{wxAppname,jdbcType=VARCHAR}, #{isEnabled,jdbcType=CHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.freework.weixin_backend.domain.AppInfo">
+    insert into app_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="innerAppid != null">
+        inner_appid,
+      </if>
+      <if test="wxAppid != null">
+        wx_appid,
+      </if>
+      <if test="wxAppsecret != null">
+        wx_appsecret,
+      </if>
+      <if test="wxAppname != null">
+        wx_appname,
+      </if>
+      <if test="isEnabled != null">
+        is_enabled,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="innerAppid != null">
+        #{innerAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAppid != null">
+        #{wxAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAppsecret != null">
+        #{wxAppsecret,jdbcType=VARCHAR},
+      </if>
+      <if test="wxAppname != null">
+        #{wxAppname,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null">
+        #{isEnabled,jdbcType=CHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="getAppInfoById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select inner_appid, wx_appid, wx_appsecret  from app_info  where inner_appid = #{appId,jdbcType=VARCHAR} limit 1;
+  </select>
+</mapper>
