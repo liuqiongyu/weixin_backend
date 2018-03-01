@@ -1,2 +1,2 @@
 # weixin_backend
-用JAVA实现的微信小程序后台
+用JAVA(SPRINGBOOT)实现的微信小程序后台
